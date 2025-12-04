@@ -1,2 +1,2 @@
-# Secretar-a-General
+# Secretaria-General
 Página de la Secretaría General
