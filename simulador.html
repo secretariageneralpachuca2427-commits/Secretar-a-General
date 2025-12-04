@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#eedb8e">
+    <title>Secretaría General</title>
+    <style>
+        /* Reset de márgenes y paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #2b2b2b;
+            color: #e7e7e7;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #eedb8e;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin: 20px 0;
+            font-style: italic;
+            color: #fff;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-link {
+            text-decoration: none;
+            background-color: #eedb8e;
+            color: #2b2b2b;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-link:hover {
+            background-color: #f1c40f;
+        }
+
+        footer {
+            margin-top: 40px;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+    </style>
+<script>
+    // 🔒 Bloquear clic derecho
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // 🔒 Bloquear teclas de inspección
+    document.addEventListener("keydown", function (e) {
+        if (
+            e.key === "F12" ||                          // F12
+            (e.ctrlKey && e.shiftKey && e.key === "I") ||  // Ctrl+Shift+I
+            (e.ctrlKey && e.shiftKey && e.key === "C") ||  // Ctrl+Shift+C
+            (e.ctrlKey && e.shiftKey && e.key === "J") ||  // Ctrl+Shift+J
+            (e.ctrlKey && e.key === "U")                  // Ctrl+U
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 🔒 Bloquear arrastre de elementos (evita inspección rápida)
+    document.addEventListener("dragstart", e => e.preventDefault());
+
+    // 🔒 Bloquear copiar, cortar y pegar
+    document.addEventListener("copy", e => e.preventDefault());
+    document.addEventListener("cut", e => e.preventDefault());
+    document.addEventListener("paste", e => e.preventDefault());
+
+    // 🔒 Bloquear selección de texto
+    document.addEventListener("selectstart", e => e.preventDefault()); // previene selección con ratón
+    document.addEventListener("mousedown", e => e.preventDefault());    // refuerzo para arrastre
+</script>
+
+</head>
+<body>
+    <h1>Centro de Acceso a la Información para los Estudiantes</h1>
+
+    <img src="estudiantes.jpg" alt="Imagen de estudiantes">
+
+    <h2>Bienvenido a un sitio web de noticias y difusión de la información del estado de Hidalgo</h2>
+
+    <a href="#" class="button-link">Busca Otras Noticias</a>
+
+    <footer>
+        <p>&copy; 2025 Centro de Información - Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

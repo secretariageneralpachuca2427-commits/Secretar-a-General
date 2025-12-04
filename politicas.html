@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Políticas de Privacidad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px 20px;
+            background-color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+
+        h1, h2 {
+            color: #f1f1f1;
+        }
+
+        section {
+            margin-bottom: 25px;
+        }
+
+        a {
+            color: #00e5ff;
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9em;
+            color: #bbb;
+            margin-top: 40px;
+        }
+
+        /* ===== BOTÓN ESTILO CABECERA ===== */
+        .boton-regreso {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid #00e5ff;
+            color: #00e5ff;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            font-size: 16px;
+            border-radius: 6px;
+            transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+        }
+
+        .boton-regreso:hover {
+            background-color: #00e5ff;
+            color: #001a1a;
+            box-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;
+        }
+
+        .centrar {
+            text-align: center;
+            margin-top: 35px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("Página de políticas cargada correctamente.");
+        });
+    </script>
+<script>
+    // 🔒 Bloquear clic derecho
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // 🔒 Bloquear teclas de inspección
+    document.addEventListener("keydown", function (e) {
+        if (
+            e.key === "F12" ||                          // F12
+            (e.ctrlKey && e.shiftKey && e.key === "I") ||  // Ctrl+Shift+I
+            (e.ctrlKey && e.shiftKey && e.key === "C") ||  // Ctrl+Shift+C
+            (e.ctrlKey && e.shiftKey && e.key === "J") ||  // Ctrl+Shift+J
+            (e.ctrlKey && e.key === "U")                  // Ctrl+U
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 🔒 Bloquear arrastre de elementos (evita inspección rápida)
+    document.addEventListener("dragstart", e => e.preventDefault());
+
+    // 🔒 Bloquear copiar, cortar y pegar
+    document.addEventListener("copy", e => e.preventDefault());
+    document.addEventListener("cut", e => e.preventDefault());
+    document.addEventListener("paste", e => e.preventDefault());
+
+    // 🔒 Bloquear selección de texto
+    document.addEventListener("selectstart", e => e.preventDefault()); // previene selección con ratón
+    document.addEventListener("mousedown", e => e.preventDefault());    // refuerzo para arrastre
+</script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Políticas de Privacidad</h1>
+
+        <section>
+            <h2>1. Recolección de Información</h2>
+            <p>
+                Este sitio puede recopilar información personal como nombre, correo electrónico, número de teléfono y ubicación 
+                cuando el usuario se registra, participa en encuestas o interactúa con secciones del sitio.
+            </p>
+        </section>
+
+        <section>
+            <h2>2. Uso de la Información</h2>
+            <p>
+                La información recopilada se utiliza para mejorar la experiencia del usuario, personalizar contenido,
+                enviar noticias relevantes y optimizar nuestros servicios.
+            </p>
+        </section>
+
+        <section>
+            <h2>3. Uso de Cookies</h2>
+            <p>
+                Este sitio utiliza cookies para mejorar la navegación y personalizar la experiencia del usuario. 
+                Al continuar navegando, aceptas el uso de cookies. Puedes deshabilitarlas desde la configuración de tu navegador.
+            </p>
+        </section>
+
+        <section>
+            <h2>4. Protección de Datos</h2>
+            <p>
+                Implementamos medidas de seguridad para proteger la información de nuestros usuarios. 
+                No compartimos datos personales con terceros sin consentimiento, salvo obligación legal.
+            </p>
+        </section>
+
+        <section>
+            <h2>5. Enlaces a Terceros</h2>
+            <p>
+                Este sitio puede contener enlaces a otros sitios web. No somos responsables por las prácticas de privacidad ni el contenido de dichos sitios.
+            </p>
+        </section>
+
+        <section>
+            <h2>6. Derechos de los Usuarios</h2>
+            <p>
+                Los usuarios tienen derecho a acceder, modificar o eliminar sus datos personales. Para ello, pueden contactarnos en 
+                <a href="mailto:soporte@oceannix.in.mx">soporte@oceannix.in.mx</a>.
+            </p>
+        </section>
+
+        <section>
+            <h2>7. Cambios en la Política</h2>
+            <p>
+                Nos reservamos el derecho de modificar estas políticas en cualquier momento. Las modificaciones tendrán efecto al ser publicadas en esta página.
+            </p>
+        </section>
+
+        <footer>
+            <p>Última actualización: 19 de Noviembre del 2025</p>
+        </footer>
+
+        <!-- BOTÓN DE REGRESO -->
+        <div class="centrar">
+            <a href="contenido.html" target="contenido" class="boton-regreso">Regresar</a>
+        </div>
+
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Oceannix Innovation</title>
+
+    <style>
+        /* Estilos originales */
+        body {
+            background-color: black;
+            text-align: right;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            padding-top: 10px;
+            padding-right: 10px;
+            box-sizing: border-box;
+
+            /* necesario para posicionar el bloqueador */
+            position: relative;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 6px 14px;
+            border: 1px solid #00e5ff;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+            background: transparent;
+        }
+
+        th a {
+            color: #00e5ff;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+        }
+
+        th:hover {
+            background-color: #00e5ff;
+            box-shadow: 0 0 10px #00e5ff, 0 0 25px #00e5ff;
+        }
+
+        th:hover a {
+            color: #001a1a;
+        }
+
+        /* ====== Bloqueador (overlay) ====== */
+        #bloqueadorCabecera {
+            position: absolute;
+            inset: 0; /* top:0; right:0; bottom:0; left:0; */
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00e5ff;
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            padding: 10px;
+            gap: 12px;
+            flex-direction: column;
+        }
+
+        #bloqueadorCabecera .mensaje {
+            max-width: 320px;
+            line-height: 1.3;
+        }
+
+        #bloqueadorCabecera .btn {
+            display: inline-block;
+            padding: 8px 14px;
+            border: 2px solid #00e5ff;
+            color: #00e5ff;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-decoration: none;
+        }
+
+        #bloqueadorCabecera .btn:hover {
+            background: #00e5ff;
+            color: #001a1a;
+            box-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;
+        }
+
+        /* efecto blurr al fondo opcional (descomentarlo si quieres que la cabecera se vea desenfocada) */
+        /* body.blurred > table { filter: blur(2px); } */
+    </style>
+
+    <script>
+        // Bloquea la cabecera si no hay aceptación
+        document.addEventListener("DOMContentLoaded", () => {
+            try {
+                if (!localStorage.getItem("aceptado")) {
+                    crearBloqueador();
+                }
+            } catch (e) {
+                // Si el navegador bloquea localStorage o está en modo privado,
+                // mejor mostrar el bloqueador para forzar la interacción.
+                crearBloqueador();
+                console.warn("No se puede acceder a localStorage:", e);
+            }
+        });
+
+        // Escucha cambios de almacenamiento desde otra frame/ventana
+        window.addEventListener("storage", (event) => {
+            if (event.key === "aceptado" && event.newValue === "true") {
+                quitarBloqueador();
+            }
+        });
+
+        // Funciones para crear y quitar bloqueador
+        function crearBloqueador() {
+            // Evita duplicados
+            if (document.getElementById("bloqueadorCabecera")) return;
+
+            // Añadir clase opcional para desenfocar fondo
+            // document.body.classList.add('blurred');
+
+            const div = document.createElement("div");
+            div.id = "bloqueadorCabecera";
+
+            // Mensaje y botones
+            div.innerHTML = `
+                <div class="mensaje">Debes aceptar los términos y la política de privacidad para usar el menú.</div>
+                <div style="display:flex;gap:8px">
+                    <button class="btn" id="btnIrPoliticas">Ir a Políticas</button>
+                    <button class="btn" id="btnRecordar">Recordarme</button>
+                </div>
+                <small style="color:#9bdcff; margin-top:6px;">(No podrás usar el menú hasta aceptar)</small>
+            `;
+
+            // Insertar al principio del body para cubrir todo
+            document.body.appendChild(div);
+
+            // Acciones botones
+            document.getElementById("btnIrPoliticas").addEventListener("click", () => {
+                // Abrir politicas.html en el frame 'contenido'
+                // Si el frameset usa target "contenido" esto lo abrirá ahí:
+                try {
+                    if (parent && parent.frames && parent.frames['contenido']) {
+                        parent.frames['contenido'].location.href = 'politicas.html';
+                    } else {
+                        // fallback: abrir en la misma ventana si no encuentra frame
+                        window.location.href = 'politicas.html';
+                    }
+                } catch (e) {
+                    // fallback seguro
+                    window.location.href = 'politicas.html';
+                }
+            });
+
+            document.getElementById("btnRecordar").addEventListener("click", () => {
+                // Simplemente da una pista al usuario para que acepte desde la página de inicio
+                alert("Abre la página de inicio o la sección de políticas y acepta los términos para desbloquear el menú.");
+            });
+        }
+
+        function quitarBloqueador() {
+            const el = document.getElementById("bloqueadorCabecera");
+            if (el) el.remove();
+            // document.body.classList.remove('blurred');
+        }
+    </script>
+<script>
+    // 🔒 Bloquear clic derecho
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // 🔒 Bloquear teclas de inspección
+    document.addEventListener("keydown", function (e) {
+        if (
+            e.key === "F12" ||                          // F12
+            (e.ctrlKey && e.shiftKey && e.key === "I") ||  // Ctrl+Shift+I
+            (e.ctrlKey && e.shiftKey && e.key === "C") ||  // Ctrl+Shift+C
+            (e.ctrlKey && e.shiftKey && e.key === "J") ||  // Ctrl+Shift+J
+            (e.ctrlKey && e.key === "U")                  // Ctrl+U
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 🔒 Bloquear arrastre de elementos (evita inspección rápida)
+    document.addEventListener("dragstart", e => e.preventDefault());
+
+    // 🔒 Bloquear copiar, cortar y pegar
+    document.addEventListener("copy", e => e.preventDefault());
+    document.addEventListener("cut", e => e.preventDefault());
+    document.addEventListener("paste", e => e.preventDefault());
+
+    // 🔒 Bloquear selección de texto
+    document.addEventListener("selectstart", e => e.preventDefault()); // previene selección con ratón
+    document.addEventListener("mousedown", e => e.preventDefault());    // refuerzo para arrastre
+</script>
+
+
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th><a href="contenido.html" target="contenido">Inicio</a></th>
+               </tr>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Noticias al Instante</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    .filters {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .filters button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .filters button:hover {
+      background-color: #555;
+    }
+
+    .news-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .news-card {
+      background-color: #2a2a2a;
+      padding: 15px;
+      border-radius: 8px;
+      width: 300px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .news-card img {
+      width: 100%;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .news-card h3 {
+      margin-top: 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+<script>
+    // 🔒 Bloquear clic derecho
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // 🔒 Bloquear teclas de inspección
+    document.addEventListener("keydown", function (e) {
+        if (
+            e.key === "F12" ||                          // F12
+            (e.ctrlKey && e.shiftKey && e.key === "I") ||  // Ctrl+Shift+I
+            (e.ctrlKey && e.shiftKey && e.key === "C") ||  // Ctrl+Shift+C
+            (e.ctrlKey && e.shiftKey && e.key === "J") ||  // Ctrl+Shift+J
+            (e.ctrlKey && e.key === "U")                  // Ctrl+U
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 🔒 Bloquear arrastre de elementos (evita inspección rápida)
+    document.addEventListener("dragstart", e => e.preventDefault());
+
+    // 🔒 Bloquear copiar, cortar y pegar
+    document.addEventListener("copy", e => e.preventDefault());
+    document.addEventListener("cut", e => e.preventDefault());
+    document.addEventListener("paste", e => e.preventDefault());
+
+    // 🔒 Bloquear selección de texto
+    document.addEventListener("selectstart", e => e.preventDefault()); // previene selección con ratón
+    document.addEventListener("mousedown", e => e.preventDefault());    // refuerzo para arrastre
+</script>
+
+</head>
+<body>
+
+  <header>
+    <h1>Noticias al Instante</h1>
+    <p>Filtra por categoría para ver lo que más te interesa</p>
+  </header>
+
+  <div class="filters">
+    <button onclick="filterNews('all')">Todas</button>
+    <button onclick="filterNews('nota-roja')">Nota Roja</button>
+    <button onclick="filterNews('politica')">Política</button>
+    <button onclick="filterNews('religion')">Religión</button>
+    <button onclick="filterNews('deportes')">Deportes</button>
+    <button onclick="filterNews('internacional')">Internacional</button>
+  </div>
+
+  <div class="news-container">
+    <!-- Noticias de ejemplo -->
+	<div class="news-card religion">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_qC3sRHsoTrHZ5ccmc18MFLmLJdyJSKOPrQ&s" alt="Nota Roja">
+      <h3>Anuncian al nuevo papa</h3>
+      <p>Los cardenales seleccionan papa al 2 día dle concláve...</p>
+    </div>
+    <div class="news-card nota-roja">
+      <img src="https://www.elfinanciero.com.mx/resizer/v2/5YZSTPSZTBDOJGNOUUFETDIL5I.jpg?smart=true&auth=fecb47ed6897be9e06f9cb644699bd4befdef7da90ade357b5914bc0e1d098ce&width=1200&height=675&quality=100" alt="Nota Roja">
+      <h3>Balacera en el centro deja 3 heridos</h3>
+      <p>Testigos aseguran que fueron dos sujetos armados los responsables...</p>
+    </div>
+
+    <div class="news-card politica">
+      <img src="https://i0.wp.com/lopezdoriga.com/wp-content/uploads/2022/09/senado-de-la-republica.jpg?fit=800%2C534&ssl=1" alt="Política">
+      <h3>Reforma electoral avanza en el Congreso</h3>
+      <p>El nuevo proyecto busca modificar las reglas del financiamiento político...</p>
+    </div>
+
+    <div class="news-card religion">
+      <img src="https://th.bing.com/th?id=OVFT.o8t_Ggy7TSDytixLGLrT5S&pid=News&w=300&h=186&c=14&rs=2&qlt=90" alt="Religión">
+      <h3>Papa Francisco ofrece mensaje de paz</h3>
+      <p>Durante su homilía dominical, el pontífice habló sobre la reconciliación...</p>
+    </div>
+
+    <div class="news-card deportes">
+      <img src="https://th.bing.com/th/id/OIP.3qrUPrlJ5TqWXp1PNm94NwHaE8?w=238&h=180&c=7&r=0&o=5&pid=1.7" alt="Deportes">
+      <h3>América vence a Chivas 2-1 en el clásico</h3>
+      <p>Con goles de Valdés y Quiñones, el América se lleva la victoria...</p>
+    </div>
+
+    <div class="news-card internacional">
+      <img src="https://th.bing.com/th/id/OIP.CHtAb5zRxklaYV_A2DGcMQHaE4?w=258&h=180&c=7&r=0&o=5&pid=1.7" alt="Internacional">
+      <h3>Terremoto en Japón causa alerta de tsunami</h3>
+      <p>Autoridades piden evacuar zonas costeras tras sismo de 7.1 grados...</p>
+    </div>
+
+    <div class="news-card politica">
+      <img src="https://www.bing.com/th/id/OIP.Jbw5Kv7TJ6-QVgGmmSlgVwHaEK?w=210&h=160&o=6&pid=Reference" alt="Política">
+      <h3>Presidente visita obra del Tren Maya</h3>
+      <p>Supervisa avances en la construcción y dialoga con trabajadores...</p>
+    </div>
+
+    <div class="news-card nota-roja">
+      <img src="https://th.bing.com/th?id=OVFT.F1DPP5Rz6ZNp_d7YWyKv7C&pid=News&w=80&h=80&c=14&rs=2&qlt=90" alt="Nota Roja">
+      <h3>Capturan a presunto líder criminal</h3>
+      <p>La operación fue realizada por elementos del Ejército Mexicano...</p>
+    </div>
+
+    <div class="news-card religion">
+      <img src="https://static-live.nmas.com.mx/nmas-news/styles/corte_16_9/cloud-storage/2023-01/peregrinacion-basilica-paz.jpg" alt="Religión">
+      <h3>Miles asisten a peregrinación anual</h3>
+      <p>La fe congregó a miles de fieles en la Basílica de Guadalupe...</p>
+    </div>
+
+    <div class="news-card deportes">
+      <img src="https://yodeportivo.com/wp-content/uploads/2023/06/Mexico-Sub-20-Femenil.jpg" alt="Deportes">
+      <h3>México clasifica al Mundial Sub-20</h3>
+      <p>Con una victoria contundente, el equipo mexicano asegura su pase...</p>
+    </div>
+
+    <div class="news-card internacional">
+      <img src="https://media.cnn.com/api/v1/images/stellar/prod/cnne-1338682-nuevo-dia-de-protestas-contra-reforma-previsional-en-francia.jpg?c=16x9&q=w_1280,c_fill" alt="Internacional">
+      <h3>Protestas en Francia por reforma laboral</h3>
+      <p>Trabajadores y sindicatos toman las calles de París...</p>
+    </div>
+
+    <div class="news-card nota-roja">
+      <img src="https://www.swissinfo.ch/content/wp-content/uploads/sites/13/2019/09/33cc16b29113fb7154c356df829dc4ed-image_doc-1kd4j9-data.jpg" alt="Nota Roja">
+      <h3>Encuentran fosa clandestina</h3>
+      <p>Autoridades investigan la identidad de los restos hallados...</p>
+    </div>
+
+    <div class="news-card politica">
+      <img src="https://cloudfront-eu-central-1.images.arcpublishing.com/prisa/LXKLEHYOZBB3BME66MR4MDALBA.jpg" alt="Política">
+      <h3>Debate presidencial en cadena nacional</h3>
+      <p>Los candidatos presentaron sus propuestas de seguridad y economía...</p>
+    </div>
+
+    <div class="news-card religion">
+      <img src="https://media.cnn.com/api/v1/images/stellar/prod/2025-04-22t074842z-728175801-rc2i2eaidvnq-rtrmadp-3-pope-francis-20250422211029211.jpg?c=original" alt="Religión">
+      <h3>Fallecimiento del Papa Francisco</h3>
+      <p>El Papa Francisco ha fallecido a los 87 años de edad. Se ha decretado luto oficial en todo el Vaticano...</p>
+    </div>
+
+    <div class="news-card deportes">
+      <img src="https://cloudfront-eu-central-1.images.arcpublishing.com/diarioas/WEFLOJOBRMT4VENUOHHFD2QRWM.jpg" alt="Deportes">
+      <h3>Checo Pérez sube al podio en Mónaco</h3>
+      <p>El piloto mexicano logra tercer lugar en una carrera llena de emoción...</p>
+    </div>
+
+    <div class="news-card internacional">
+      <img src="https://cdn.milenio.com/uploads/media/2024/03/19/celeste-saulo-titular-organizacion-metereologica.jpg" alt="Internacional">
+      <h3>ONU lanza alerta climática global</h3>
+      <p>El secretario general advierte sobre consecuencias irreversibles...</p>
+    </div>
+
+    <div class="news-card nota-roja">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSib9bXexbSYastGUvLZ2QEP2G3aXsDoe4H-g&s" alt="Nota Roja">
+      <h3>Incendio consume mercado local</h3>
+      <p>Bomberos controlan siniestro tras horas de labores...</p>
+    </div>
+
+    <div class="news-card politica">
+      <img src="https://www.mexicoevalua.org/wp-content/uploads/2025/01/2025-01-31-educacion-nexos-presupuesto-escuela.png" alt="Política">
+      <h3>Aumentan presupuesto para educación</h3>
+      <p>Gobierno destinará más recursos a escuelas públicas...</p>
+    </div>
+
+    <div class="news-card religion">
+      <img src="https://cdn0.uncomo.com/es/posts/7/5/3/las_procesiones_mas_importantes_de_semana_santa_en_espana_53357_2_600.jpg" alt="Religión">
+      <h3>Celebran Semana Santa con procesiones</h3>
+      <p>Fieles participan en actos religiosos por toda la ciudad...</p>
+    </div>
+
+    <div class="news-card deportes">
+      <img src="https://media.cospanama.com/p/681a1ab79d5da53ceaa9b179b9db1ecc/adjuntos/324/imagenes/018/634/0018634659/855x0/smart/lyonssjpg.jpg" alt="Deportes">
+      <h3>Final de la Champions definida</h3>
+      <p>Real Madrid y Manchester City se enfrentarán por la gloria europea...</p>
+    </div>
+
+    <div class="news-card religion">
+      <img src="https://www.cronista.com/files/image/1134/1134651/6806273272edb_600_315!.jpg?s=4b10ed4b4566b653c3d87c4544058c40&d=1745549299" alt="Cónclave Vaticano">
+      <h3>Cónclave Vaticano 2025: Inició 7 de mayo y concluyo el 8</h3>
+      <p>Los cardenales se reúnen en la Capilla Sixtina para elegir al nuevo Papa tras el fallecimiento del Papa Francisco...</p>
+    </div>
+  </div>
+
+  <script>
+    function filterNews(category) {
+      const allNews = document.querySelectorAll('.news-card');
+      allNews.forEach(card => {
+        if (category === 'all') {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.toggle('hidden', !card.classList.contains(category));
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

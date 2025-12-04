@@ -1,0 +1,169 @@
+<html>
+<head>
+<title>sentro de acceso a la informacion </title>
+<script>
+    // 🔒 Bloquear clic derecho
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // 🔒 Bloquear teclas de inspección
+    document.addEventListener("keydown", function (e) {
+        if (
+            e.key === "F12" ||                          // F12
+            (e.ctrlKey && e.shiftKey && e.key === "I") ||  // Ctrl+Shift+I
+            (e.ctrlKey && e.shiftKey && e.key === "C") ||  // Ctrl+Shift+C
+            (e.ctrlKey && e.shiftKey && e.key === "J") ||  // Ctrl+Shift+J
+            (e.ctrlKey && e.key === "U")                  // Ctrl+U
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 🔒 Bloquear arrastre de elementos (evita inspección rápida)
+    document.addEventListener("dragstart", e => e.preventDefault());
+
+    // 🔒 Bloquear copiar, cortar y pegar
+    document.addEventListener("copy", e => e.preventDefault());
+    document.addEventListener("cut", e => e.preventDefault());
+    document.addEventListener("paste", e => e.preventDefault());
+
+    // 🔒 Bloquear selección de texto
+    document.addEventListener("selectstart", e => e.preventDefault()); // previene selección con ratón
+    document.addEventListener("mousedown", e => e.preventDefault());    // refuerzo para arrastre
+</script>
+
+</head>
+<body bgcolor=" "><body background ="">
+<font face= "arial"size=""color="white">
+<center><h1> la pagina mas confiable de noticias   </h1></center>
+<br>
+<strong><h2> ¿QUIENES SOMOS? </h2></strong>
+<br>
+<center><center><h1>  </h1></center>
+<img src="milo.jpg" width="200" height="200" ></center>
+<p><h3> En Centro de Acceso a la Información , nos dedicamos a brindar noticias veraces, objetivas y relevantes para mantenerte informado en todo momento.trabajamos con profesionalismo para ofrecerle contenido actualizado sobre temas de interés local, nacional e internacional.Creemos que el acceso a la información es clave para una sociedad informada y participativa. Por ello, nos esforzamos en presentarte las noticias de forma clara, directa y accesible.
+<p><h3> nuestro citio siempre estara disponible para todos auellos que quieran estar informados y ir al dia con las ultimas noticias mundiales.
+
+
+ </h3></p>
+<br><h3>
+
+<p><center><h4>¿Quieres conoser mas <em> de </em>nosotros ? <h4></p>
+<h5><center> <h5> ¿quiers saber las ultimas noticias mas recientes?<em> da klic en la parte de abajo</em> </h5></p>
+
+<h6> entra y conose mas de nosotros y de las ultimas noticias  </h6></strong>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barra de Búsqueda de notisias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0d0d0d;
+        }
+
+        .search-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #0d0d0d;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #0d0d0d;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="search-container">
+        <h2>Buscar nonicia</h2>
+        <form id="searchForm">
+            <input type="text" id="videoInput" placeholder="Introduce URL o título del video" required>
+            <br>
+            <button type="submit">Buscar</button>
+        </form>
+        <p id="errorMessage" class="error" style="display:none;">Por favor, introduce una URL o un título válido.</p>
+    </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var input = document.getElementById('videoInput').value.trim();
+            var errorMessage = document.getElementById('errorMessage');
+
+            // Validar si es un URL o título
+            if (input) {
+                var urlRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|vimeo\.com)\/.+/; // Regex simple para verificar URLs de YouTube o Vimeo
+                if (urlRegex.test(input)) {
+                    window.location.href = input; // Redirige si es una URL válida
+                } else {
+                    // Aquí se puede agregar lógica para buscar el video por título
+                    var searchUrl = "https://www.youtube.com/results?search_query=&quot; + encodeURIComponent(input);
+                    window.location.href = searchUrl; // Redirige a búsqueda en YouTube por título
+                }
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>t">
+   
+    </h3></p>
+<br><h3>
+
+<img src="milo.jpg" width="200" height="200" ></center>
+
+</h3></p>
+<br><h3>
+
+   
+     <strong>
+        <a href="file:///C:/Users/Equipo%204/Desktop/practica666/practica1.html">Practica.html</a>
+        <br>
+        <a href="file:///C:/Users/Equipo%204/Desktop/practica%202/practica%202.html">Titulo.html</a>
+    </strong>
+     </h3></p>
+<br><h3>
+
+
+</Form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Secretaría General</title>
+
+    <!-- Bloqueos globales -->
+    <script>
+        // 🔒 Bloquear clic derecho
+        document.addEventListener("contextmenu", e => e.preventDefault());
+
+        // 🔒 Bloquear teclas de inspección
+        document.addEventListener("keydown", function (e) {
+            if (
+                e.key === "F12" ||                          // F12
+                (e.ctrlKey && e.shiftKey && e.key === "I") ||  // Ctrl+Shift+I
+                (e.ctrlKey && e.shiftKey && e.key === "C") ||  // Ctrl+Shift+C
+                (e.ctrlKey && e.shiftKey && e.key === "J") ||  // Ctrl+Shift+J
+                (e.ctrlKey && e.key === "U")               ||   // Ctrl+U
+            ) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 🔒 Bloquear arrastre de elementos (evita inspección rápida)
+        document.addEventListener("dragstart", e => e.preventDefault());
+
+        // 🔒 Bloquear copiar, cortar y pegar
+        document.addEventListener("copy", e => e.preventDefault());
+        document.addEventListener("cut", e => e.preventDefault());
+        document.addEventListener("paste", e => e.preventDefault());
+    </script>
+</head>
+
+<!-- FRAMES -->
+<frameset rows="65,*" border="0">
+    <frame src="cabecera.html" name="cabecera" scrolling="no" noresize>
+    <frame src="contenido.html" name="contenido">
+</frameset>
+
+</html>

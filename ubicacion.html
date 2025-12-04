@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ubicación CONALEP Pachuca II</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #dcdcdc;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .banner {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    .banner img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .banner img:hover {
+      transform: scale(1.02);
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #34495e;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    h1::after {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      background-color: #34495e;
+      left: 25%;
+      bottom: 0;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    h1:hover::after {
+      width: 100%;
+      left: 0;
+    }
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-maps {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #555;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-maps:hover {
+      background-color: #777;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+<script>
+    // 🔒 Bloquear clic derecho
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // 🔒 Bloquear teclas de inspección
+    document.addEventListener("keydown", function (e) {
+        if (
+            e.key === "F12" ||                          // F12
+            (e.ctrlKey && e.shiftKey && e.key === "I") ||  // Ctrl+Shift+I
+            (e.ctrlKey && e.shiftKey && e.key === "C") ||  // Ctrl+Shift+C
+            (e.ctrlKey && e.shiftKey && e.key === "J") ||  // Ctrl+Shift+J
+            (e.ctrlKey && e.key === "U")                  // Ctrl+U
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 🔒 Bloquear arrastre de elementos (evita inspección rápida)
+    document.addEventListener("dragstart", e => e.preventDefault());
+
+    // 🔒 Bloquear copiar, cortar y pegar
+    document.addEventListener("copy", e => e.preventDefault());
+    document.addEventListener("cut", e => e.preventDefault());
+    document.addEventListener("paste", e => e.preventDefault());
+
+    // 🔒 Bloquear selección de texto
+    document.addEventListener("selectstart", e => e.preventDefault()); // previene selección con ratón
+    document.addEventListener("mousedown", e => e.preventDefault());    // refuerzo para arrastre
+</script>
+
+</head>
+<body>
+
+  <!-- Banner superior -->
+  <div class="banner">
+    <a href="descarga" target="_blank">
+      <img src="https://via.placeholder.com/600x100/2c3e50/ffffff?text=🔥+Oferta+de+Laptops+%7C+Hasta+30%25+de+Descuento" alt="Publicidad laptops">
+    </a>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="container">
+    <h1>Ubicación de CONALEP Pachuca II</h1>
+    <p>A continuación, te mostramos la ubicación del plantel:</p>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3747.966477233928!2d-98.77564832401843!3d20.05184682061238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1a117756a93c9%3A0x4356f866da889600!2sConalep%20Hidalgo%20Plantel%20Pachuca%20II!5e0!3m2!1ses!2smx!4v1745963602733!5m2!1ses!2smx" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+    <a 
+      href="https://www.google.com/maps/place/Conalep+Hidalgo+Plantel+Pachuca+II/@20.051847,-98.7756483,17z" 
+      target="_blank" 
+      class="btn-maps">
+      Ver en Google Maps
+    </a>
+  </div>
+
+  <!-- Banner inferior -->
+  <div class="banner">
+    <a href="https://www.ejemplo.com/becas-educacion" target="_blank">
+      <img src="https://via.placeholder.com/600x100/27ae60/ffffff?text=%F0%9F%8C%9F+Becas+Educativas+2025+%7C+Inscríbete+Hoy" alt="Publicidad educativa">
+    </a>
+  </div>
+
+</body>
+</html>
